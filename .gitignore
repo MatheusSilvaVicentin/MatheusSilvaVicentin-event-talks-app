@@ -1,0 +1,17 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Output directory for the generated site
+output/
+
+# Build script itself (if not part of the primary source)
+generate_site.js
+
+# macOS
+.DS_Store
+
+# Gemini CLI specific
+.gemini/

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Talks Event Schedule</title>
+    <style>body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.filters {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #e9e9e9;
+    border-radius: 5px;
+}
+
+.filters label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.filters select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.talk-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.talk-card h3 {
+    color: #0056b3;
+    margin-top: 0;
+}
+
+.talk-card .time {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.talk-card .speakers,
+.talk-card .category {
+    font-size: 0.85em;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.talk-card .description {
+    font-size: 0.9em;
+    color: #444;
+}
+
+.talk-card.break {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    text-align: center;
+    font-weight: bold;
+    color: #3c763d;
+    padding: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #333;
+    color: #fff;
+    font-size: 0.8em;
+}
+</style>
+</head>
+<body>
+    <header>
+        <h1>Tech Talks Event Schedule</h1>
+        <p>A full day of technical insights and innovations.</p>
+    </header>
+
+    <main>
+        <section class="filters">
+            <label for="category-filter">Filter by Category:</label>
+            <select id="category-filter">
+                <option value="all">All Categories</option>
+            </select>
+        </section>
+
+        <section class="schedule" id="schedule-container">
+            <!-- Schedule will be rendered here by JavaScript -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tech Talks Event</p>
+    </footer>
+
+    <script>// Placeholder data - this will be replaced by the Node.js script
+const scheduleData = [
+    {
+        "id": "talk1",
+        "title": "The Future of AI in Software Development",
+        "speakers": [
+            "Dr. Ada Lovelace"
+        ],
+        "category": [
+            "AI",
+            "Software Engineering"
+        ],
+        "startTime": "10:00 AM",
+        "endTime": "11:00 AM",
+        "duration": "1 hour",
+        "description": "An in-depth look at how artificial intelligence is transforming the landscape of software engineering, from automated code generation to intelligent debugging assistants."
+    },
+    {
+        "id": "talk2",
+        "title": "Modern Web Architectures with Microfrontends",
+        "speakers": [
+            "John Doe",
+            "Jane Smith"
+        ],
+        "category": [
+            "Web Development",
+            "Architecture"
+        ],
+        "startTime": "11:10 AM",
+        "endTime": "12:10 PM",
+        "duration": "1 hour",
+        "description": "Explore the benefits and challenges of building large-scale web applications using the microfrontend architectural pattern, enhancing scalability and team autonomy."
+    },
+    {
+        "id": "talk3",
+        "title": "Containerization Best Practices with Kubernetes",
+        "speakers": [
+            "Maria Rodriguez"
+        ],
+        "category": [
+            "DevOps",
+            "Cloud Native"
+        ],
+        "startTime": "12:20 PM",
+        "endTime": "01:20 PM",
+        "duration": "1 hour",
+        "description": "A comprehensive guide to deploying, managing, and scaling containerized applications using Kubernetes, covering essential tools and strategies for robust operations."
+    },
+    {
+        "id": "lunch",
+        "title": "Lunch Break",
+        "startTime": "01:20 PM",
+        "endTime": "02:20 PM",
+        "duration": "1 hour",
+        "isBreak": true
+    },
+    {
+        "id": "talk4",
+        "title": "Data Engineering for Real-time Analytics",
+        "speakers": [
+            "David Lee"
+        ],
+        "category": [
+            "Data Engineering",
+            "Big Data"
+        ],
+        "startTime": "02:30 PM",
+        "endTime": "03:30 PM",
+        "duration": "1 hour",
+        "description": "Discover the techniques and tools used to build efficient data pipelines for real-time analytical processing, enabling immediate insights from streaming data."
+    },
+    {
+        "id": "talk5",
+        "title": "Securing Your Applications in the Cloud",
+        "speakers": [
+            "Emily Chen"
+        ],
+        "category": [
+            "Cybersecurity",
+            "Cloud Security"
+        ],
+        "startTime": "03:40 PM",
+        "endTime": "04:40 PM",
+        "duration": "1 hour",
+        "description": "Learn about the critical security measures and best practices for protecting your applications and data deployed in various cloud environments."
+    },
+    {
+        "id": "talk6",
+        "title": "Effective API Design with GraphQL",
+        "speakers": [
+            "Michael Brown",
+            "Sarah Green"
+        ],
+        "category": [
+            "API",
+            "Backend Development"
+        ],
+        "startTime": "04:50 PM",
+        "endTime": "05:50 PM",
+        "duration": "1 hour",
+        "description": "Master the principles of designing flexible and efficient APIs using GraphQL, improving data fetching and overall client-server communication."
+    }
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+    const scheduleContainer = document.getElementById('schedule-container');
+    const categoryFilter = document.getElementById('category-filter');
+
+    // Populate categories filter
+    const allCategories = new Set();
+    scheduleData.forEach(item => {
+        if (item.category) {
+            item.category.forEach(cat => allCategories.add(cat));
+        }
+    });
+
+    allCategories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+        categoryFilter.appendChild(option);
+    });
+
+    function renderSchedule(filterCategory = 'all') {
+        scheduleContainer.innerHTML = ''; // Clear previous schedule
+
+        const filteredSchedule = scheduleData.filter(item => {
+            if (filterCategory === 'all') {
+                return true;
+            }
+            return item.category && item.category.includes(filterCategory);
+        });
+
+        filteredSchedule.forEach(item => {
+            const card = document.createElement('div');
+            card.classList.add('talk-card');
+
+            if (item.isBreak) {
+                card.classList.add('break');
+                card.innerHTML = `
+                    <h3>${item.title}</h3>
+                    <p class="time">${item.startTime} - ${item.endTime}</p>
+                `;
+            } else {
+                card.innerHTML = `
+                    <h3>${item.title}</h3>
+                    <p class="time">${item.startTime} - ${item.endTime} (${item.duration})</p>
+                    <p class="speakers"><strong>Speakers:</strong> ${item.speakers.join(', ')}</p>
+                    <p class="category"><strong>Category:</strong> ${item.category.join(', ')}</p>
+                    <p class="description">${item.description}</p>
+                `;
+            }
+            scheduleContainer.appendChild(card);
+        });
+    }
+
+    // Initial render
+    renderSchedule();
+
+    // Event listener for filter
+    categoryFilter.addEventListener('change', (event) => {
+        renderSchedule(event.target.value);
+    });
+});
+</script>
+</body>
+</html>
